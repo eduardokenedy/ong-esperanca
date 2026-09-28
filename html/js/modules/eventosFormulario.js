@@ -1,32 +1,32 @@
-// Monitoramento de eventos principais na aplicação SPA
-
+// Coordena o envio demonstrativo do formulário (sem backend).
 document.addEventListener("DOMContentLoaded", () => {
-  const formulario = document.querySelector("form");
-  const botoes = document.querySelectorAll("button");
-  const inputs = document.querySelectorAll("input, textarea, select");
+  const formulario = document.querySelector("#formulario-voluntario");
+  if (!formulario) return;
 
-  // Captura de cliques em botões
-  botoes.forEach(botao => {
-    botao.addEventListener("click", event => {
-      event.preventDefault(); // evita comportamento padrão
-      console.log(`Botão ${botao.textContent} clicado`);
-      botao.classList.add("ativo"); // altera estilo dinamicamente
-    });
+  const mensagem = document.querySelector("#mensagem-formulario");
+  window.restaurarRascunho?.(formulario);
+
+  formulario.addEventListener("input", event => {
+    if (event.target.matches("input, select, textarea")) {
+      window.salvarRascunho?.(formulario);
+      if (mensagem) mensagem.textContent = "";
+    }
   });
 
-  // Captura de digitação em campos de formulário
-  inputs.forEach(input => {
-    input.addEventListener("input", () => {
-      localStorage.setItem(input.name, input.value); // persiste dados
-    });
-  });
-
-  // Captura de envio do formulário
   formulario.addEventListener("submit", event => {
-    event.preventDefault(); // evita recarregar a página
-    const dados = {};
-    inputs.forEach(input => (dados[input.name] = input.value));
-    localStorage.setItem("cadastro", JSON.stringify(dados));
-    alert("Cadastro salvo com sucesso!");
+    event.preventDefault();
+    const formularioNativoValido = formulario.checkValidity();
+    const formularioPersonalizadoValido = window.validarFormulario?.(formulario) ?? true;
+
+    if (!formularioNativoValido || !formularioPersonalizadoValido) {
+      formulario.reportValidity();
+      mensagem.textContent = "Revise os campos destacados antes de continuar.";
+      mensagem.classList.add("mensagem-formulario--erro");
+      return;
+    }
+
+    window.salvarRascunho?.(formulario);
+    mensagem.textContent = "Cadastro validado. Este protótipo não envia dados para a ONG; o rascunho fica salvo somente neste navegador.";
+    mensagem.classList.remove("mensagem-formulario--erro");
   });
 });

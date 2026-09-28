@@ -264,3 +264,109 @@ nav ul li a:focus {
 .badge.info {
   background-color: #2196f3; /* azul */
 }
+
+/* Formulário de cadastro */
+form {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+fieldset {
+  margin: 0 0 var(--espaco-md);
+  padding: var(--espaco-md);
+  border: 1px solid #c8d8df;
+  border-radius: 8px;
+}
+
+legend {
+  padding: 0 var(--espaco-xs);
+  color: var(--cor-primaria);
+  font-weight: 700;
+}
+
+label {
+  display: block;
+  margin: var(--espaco-sm) 0 var(--espaco-xxs);
+  font-weight: 600;
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  min-height: 42px;
+  padding: var(--espaco-xs);
+  border: 1px solid #9aabb3;
+  border-radius: 4px;
+  font: inherit;
+}
+
+input:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+}
+
+input.erro {
+  border: 2px solid #b42318;
+  background-color: #fff4f2;
+}
+
+input.sucesso {
+  border: 2px solid #16803c;
+}
+
+.mensagem-erro {
+  display: block;
+  min-height: 1.3em;
+  color: #b42318;
+  font-size: var(--font-size-xs);
+}
+
+.mensagem-formulario {
+  max-width: 760px;
+  margin: 0 auto var(--espaco-md);
+  font-weight: 600;
+}
+
+.mensagem-formulario--erro {
+  color: #b42318;
+}
+
+/* Cards de campanhas e iniciativas */
+.grade-projetos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--espaco-md);
+}
+
+.projeto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-xs);
+  padding: var(--espaco-sm);
+  border: 1px solid #d9e2e7;
+  border-radius: 8px;
+  background: var(--cor-branca);
+}
+
+.projeto h3,
+.projeto p {
+  margin: 0;
+}
+
+.projeto img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.projeto a {
+  align-self: flex-start;
+  padding: var(--espaco-xs) var(--espaco-sm);
+  border-radius: 4px;
+  background: var(--cor-primaria);
+  color: var(--cor-branca);
+}

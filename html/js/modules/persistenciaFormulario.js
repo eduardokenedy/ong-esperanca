@@ -1,28 +1,23 @@
-// Persistência de dados com localStorage
+// Salva somente o rascunho deste formulário; não apaga outros dados do site.
+const CHAVE_RASCUNHO_CADASTRO = "ongEsperanca:cadastro:rascunho";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const formulario = document.querySelector("form");
-  const campos = formulario.querySelectorAll("input, select, textarea");
-
-  // 🔹 Recupera dados salvos ao carregar a página
-  campos.forEach(campo => {
-    const valorSalvo = localStorage.getItem(campo.name);
-    if (valorSalvo) {
-      campo.value = JSON.parse(valorSalvo); // converte de string para valor original
-    }
-  });
-
-  // 🔹 Salva dados em tempo real
-  campos.forEach(campo => {
-    campo.addEventListener("input", () => {
-      localStorage.setItem(campo.name, JSON.stringify(campo.value)); // converte para string antes de salvar
+window.restaurarRascunho = formulario => {
+  try {
+    const rascunho = JSON.parse(localStorage.getItem(CHAVE_RASCUNHO_CADASTRO) || "{}");
+    Object.entries(rascunho).forEach(([nome, valor]) => {
+      const campo = formulario.elements.namedItem(nome);
+      if (campo && typeof valor === "string") campo.value = valor;
     });
-  });
+  } catch (erro) {
+    console.warn("Não foi possível recuperar o rascunho do formulário.", erro);
+  }
+};
 
-  // 🔹 Limpa o armazenamento ao enviar o formulário
-  formulario.addEventListener("submit", event => {
-    event.preventDefault();
-    localStorage.clear();
-    alert("Cadastro enviado e dados limpos do armazenamento local!");
-  });
-});
+window.salvarRascunho = formulario => {
+  const dados = Object.fromEntries(new FormData(formulario).entries());
+  try {
+    localStorage.setItem(CHAVE_RASCUNHO_CADASTRO, JSON.stringify(dados));
+  } catch (erro) {
+    console.warn("Não foi possível salvar o rascunho neste navegador.", erro);
+  }
+};

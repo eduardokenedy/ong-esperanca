@@ -1,50 +1,70 @@
-// Rotina de verificação de consistência do formulário
+// Valida dados além dos atributos nativos de HTML.
+const regrasCampos = {
+  nome: {
+    regra: /^[\p{L}\p{M}]+(?:[ '\u2019-][\p{L}\p{M}]+)+$/u,
+    mensagem: "Informe nome e sobrenome."
+  },
+  cpf: { regra: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/, mensagem: "Informe o CPF no formato 000.000.000-00." },
+  cep: { regra: /^\d{5}-?\d{3}$/, mensagem: "Informe um CEP válido." },
+  estado: { regra: /^[A-Za-z]{2}$/, mensagem: "Informe a sigla do estado com duas letras." },
+  telefone: { regra: /^\(\d{2}\)\s\d{4,5}-\d{4}$/, mensagem: "Informe um telefone com DDD." }
+};
 
-document.addEventListener("DOMContentLoaded", () => {
-  const formulario = document.querySelector("form");
-  const campos = formulario.querySelectorAll("input");
+function cpfValido(cpf) {
+  const digitos = cpf.replace(/\D/g, "");
+  if (digitos.length !== 11 || /^([0-9])\1{10}$/.test(digitos)) return false;
 
-  // Expressões RegEx para validação
-  const regras = {
-    nome: /^[A-Za-zÀ-ÿ\s]{3,}$/, // mínimo de 3 letras
-    cpf: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/, // formato 000.000.000-00
-    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // formato de e-mail válido
-    telefone: /^\(\d{2}\)\s\d{4,5}-\d{4}$/ // formato (00) 00000-0000
+  const calcularDigito = tamanho => {
+    let soma = 0;
+    for (let i = 0; i < tamanho; i++) soma += Number(digitos[i]) * (tamanho + 1 - i);
+    const resto = (soma * 10) % 11;
+    return resto === 10 ? 0 : resto;
   };
 
-  // Função de validação individual
-  function validarCampo(campo) {
-    const regra = regras[campo.name];
-    const valido = regra ? regra.test(campo.value) : campo.value.trim() !== "";
+  return calcularDigito(9) === Number(digitos[9]) && calcularDigito(10) === Number(digitos[10]);
+}
 
-    if (!valido) {
-      campo.classList.add("erro");
-      campo.classList.remove("sucesso");
-      campo.nextElementSibling?.remove(); // remove mensagem anterior
-      const msg = document.createElement("span");
-      msg.textContent = "Campo inválido ou incompleto.";
-      msg.classList.add("mensagem-erro");
-      campo.insertAdjacentElement("afterend", msg);
-    } else {
-      campo.classList.remove("erro");
-      campo.classList.add("sucesso");
-      campo.nextElementSibling?.remove();
-    }
-    return valido;
+function validarCampo(campo) {
+  const configuracao = regrasCampos[campo.name];
+  let valido = campo.value.trim() !== "";
+  let mensagem = configuracao?.mensagem || "Preencha este campo.";
+
+  if (valido && configuracao && !configuracao.regra.test(campo.value.trim())) valido = false;
+  if (valido && campo.name === "cpf" && !cpfValido(campo.value)) {
+    valido = false;
+    mensagem = "O CPF informado não é válido.";
+  }
+  if (valido && campo.name === "nascimento" && new Date(`${campo.value}T00:00:00`) >= new Date(new Date().toDateString())) {
+    valido = false;
+    mensagem = "Informe uma data de nascimento anterior a hoje.";
+  }
+  if (valido && campo.type === "email" && !campo.validity.valid) {
+    valido = false;
+    mensagem = "Informe um e-mail válido.";
   }
 
-  // Validação em tempo real
-  campos.forEach(campo => {
-    campo.addEventListener("input", () => validarCampo(campo));
-  });
+  campo.classList.toggle("erro", !valido);
+  campo.classList.toggle("sucesso", valido);
+  campo.setAttribute("aria-invalid", String(!valido));
+  const erro = document.getElementById(`erro-${campo.name}`);
+  if (erro) erro.textContent = valido ? "" : mensagem;
+  return valido;
+}
 
-  // Validação ao enviar
-  formulario.addEventListener("submit", event => {
-    event.preventDefault();
-    let valido = true;
-    campos.forEach(campo => {
-      if (!validarCampo(campo)) valido = false;
+window.validarFormulario = formulario => {
+  let valido = true;
+  formulario.querySelectorAll("input, select, textarea").forEach(campo => {
+    if (!validarCampo(campo)) valido = false;
+  });
+  return valido;
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const formulario = document.querySelector("#formulario-voluntario");
+  if (!formulario) return;
+  formulario.querySelectorAll("input, select, textarea").forEach(campo => {
+    campo.addEventListener("blur", () => {
+      if (campo.value) validarCampo(campo);
     });
-    if (valido) alert("Formulário enviado com sucesso!");
   });
 });
