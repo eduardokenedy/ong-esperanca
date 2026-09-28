@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos - ONG Esperança</title>
+  <!-- Como o projetos.html está dentro da pasta /html, o CSS precisa subir um nível -->
+  <link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+  <header>
+    <h1>Projetos da ONG Esperança</h1>
+    <nav>
+      <ul>
+        <!-- Links continuam dentro da pasta /html -->
+        <li><a href="index.html">Início</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-labelledby="doacao">
+      <h2 id="doacao">Campanhas de Doação</h2>
+
+      <article>
+        <h3>Campanha do Agasalho</h3>
+        <p>Coleta de roupas e cobertores para famílias em situação de vulnerabilidade.</p>
+        <!-- Caminho da imagem ajustado para subir um nível -->
+        <img src="../img/agasalho.jpg" alt="Voluntários recolhendo roupas para a campanha do agasalho">
+        <a href="cadastro.html">Participe</a>
+      </article>
+
+      <article>
+        <h3>Doação de Alimentos</h3>
+        <p>Distribuição de cestas básicas para comunidades carentes.</p>
+        <img src="../img/alimentos.jpg" alt="Cestas básicas organizadas para distribuição">
+        <a href="cadastro.html">Contribua</a>
+      </article>
+    </section>
+
+    <section aria-labelledby="voluntariado">
+      <h2 id="voluntariado">Projetos de Voluntariado</h2>
+
+      <article>
+        <h3>Apoio Escolar</h3>
+        <p>Aulas de reforço para crianças em idade escolar.</p>
+        <img src="../img/aulas.jpg" alt="Voluntário ensinando crianças em sala comunitária">
+      </article>
+
+      <article>
+        <h3>Visitas a Asilos</h3>
+        <p>Momentos de companhia e atividades recreativas com idosos.</p>
+        <img src="../img/asilos.jpg" alt="Voluntários conversando com idosos em asilo">
+      </article>
+    </section>
+
+    <section aria-labelledby="depoimentos">
+      <h2 id="depoimentos">Depoimentos de Voluntários</h2>
+      <blockquote>
+        “Participar da ONG Esperança mudou minha vida. É gratificante ver o sorriso das pessoas.”
+        <cite>— Maria, voluntária</cite>
+      </blockquote>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ONG Esperança - Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Script para renderização dinâmica -->
+  <script src="../js/modules/renderizarProjetos.js"></script>
+</body>
+</html>

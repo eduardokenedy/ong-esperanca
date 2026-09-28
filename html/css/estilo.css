@@ -1,0 +1,262 @@
+/* ===========================
+   Design System - ONG Esperança
+   =========================== */
+
+/* 🎨 Paleta de cores */
+:root {
+  --cor-primaria: #0077B6;
+  --cor-secundaria: #00B4D8;
+  --cor-terciaria: #90E0EF;
+  --cor-branca: #FFFFFF;
+  --cor-cinza-claro: #F5F5F5;
+  --cor-cinza: #A0A0A0;
+  --cor-cinza-escuro: #333333;
+  --cor-preta: #000000;
+
+  /* 🧩 Tipografia */
+  --font-base: 'Open Sans', Arial, sans-serif;
+  --font-size-xl: 2.5rem;   /* Títulos principais */
+  --font-size-lg: 1.75rem;  /* Subtítulos */
+  --font-size-md: 1.25rem;  /* Texto padrão */
+  --font-size-sm: 1rem;     /* Legendas e botões */
+  --font-size-xs: 0.875rem; /* Rodapé e observações */
+
+  /* 📏 Espaçamentos modulares */
+  --espaco-xxs: 4px;
+  --espaco-xs: 8px;
+  --espaco-sm: 16px;
+  --espaco-md: 24px;
+  --espaco-lg: 32px;
+  --espaco-xl: 48px;
+}
+
+/* ===========================
+   Estilos globais
+   =========================== */
+body {
+  font-family: var(--font-base);
+  font-size: var(--font-size-sm);
+  color: var(--cor-cinza-escuro);
+  background-color: var(--cor-cinza-claro);
+  margin: 0;
+  padding: var(--espaco-md);
+  line-height: 1.6;
+}
+
+header,
+footer {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branca);
+  text-align: center;
+  padding: var(--espaco-sm);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--cor-primaria);
+  margin-bottom: var(--espaco-xs);
+}
+
+a {
+  color: var(--cor-secundaria);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Layout e componentes
+   =========================== */
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin: 0 var(--espaco-xs);
+}
+
+section {
+  background-color: var(--cor-branca);
+  padding: var(--espaco-md);
+  margin-bottom: var(--espaco-md);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branca);
+  border: none;
+  padding: var(--espaco-xs) var(--espaco-sm);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--cor-terciaria);
+}
+/* Layout base com 12 colunas */
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Elementos principais */
+header, footer {
+  grid-column: 1 / 13;
+}
+
+main {
+  grid-column: 1 / 13;
+}
+
+/* Exemplo de áreas internas */
+.sidebar {
+  grid-column: 1 / 4;
+}
+
+.content {
+  grid-column: 4 / 13;
+}
+
+/* ===========================
+   Breakpoints responsivos
+   =========================== */
+
+/* 1️⃣ Extra pequeno (até 480px) — celulares */
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    grid-column: 1 / 2;
+  }
+  .content {
+    grid-column: 1 / 2;
+  }
+}
+
+/* 2️⃣ Pequeno (481px a 768px) — smartphones grandes */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .sidebar {
+    grid-column: 1 / 7;
+  }
+  .content {
+    grid-column: 1 / 7;
+  }
+}
+
+/* 3️⃣ Médio (769px a 1024px) — tablets */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .sidebar {
+    grid-column: 1 / 3;
+  }
+  .content {
+    grid-column: 3 / 9;
+  }
+}
+
+/* 4️⃣ Grande (1025px a 1280px) — notebooks */
+@media (max-width: 1280px) {
+  .container {
+    grid-template-columns: repeat(10, 1fr);
+  }
+  .sidebar {
+    grid-column: 1 / 3;
+  }
+  .content {
+    grid-column: 3 / 11;
+  }
+}
+
+/* 5️⃣ Extra grande (acima de 1281px) — desktops panorâmicos */
+@media (min-width: 1281px) {
+  .container {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .sidebar {
+    grid-column: 1 / 4;
+  }
+  .content {
+    grid-column: 4 / 13;
+  }
+}
+/* ===========================
+   Efeitos de Hover e Transição
+   =========================== */
+
+/* Links do menu */
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav ul li a:hover {
+  color: #ffdd57; /* muda para amarelo suave */
+  transform: scale(1.05); /* leve aumento */
+}
+
+/* Botões */
+button,
+input[type="submit"] {
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #0097a7; /* tom mais escuro */
+  transform: translateY(-2px); /* leve elevação */
+}
+
+/* Feedback visual ao focar */
+button:focus,
+input[type="submit"]:focus,
+nav ul li a:focus {
+  outline: 2px solid #ffdd57;
+  outline-offset: 2px;
+}
+/* ===========================
+   Feedback de Validação de Formulário
+   =========================== */
+
+/* Campo inválido */
+input.erro, select.erro, textarea.erro {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+/* Campo válido */
+input.sucesso, select.sucesso, textarea.sucesso {
+  border: 2px solid green;
+  background-color: #e6ffe6;
+}
+
+/* Mensagens de erro */
+.mensagem-erro {
+  color: red;
+  font-size: var(--font-size-xs);
+  margin-left: var(--espaco-xs);
+  display: inline-block;
+}

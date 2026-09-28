@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG Esperança</title>
+  <!-- Como o index.html está dentro da pasta /html, o caminho para o CSS precisa subir um nível -->
+  <link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+  <header>
+    <h1>ONG Esperança</h1>
+    <nav>
+      <ul>
+        <!-- Ajuste dos links para apontar corretamente para os arquivos dentro da pasta /html -->
+        <li><a href="index.html">Início</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div id="conteudo">
+      <!-- Aqui o JavaScript vai carregar o conteúdo das páginas -->
+    </div>
+
+    <section aria-labelledby="sobre-nos">
+      <h2 id="sobre-nos">Quem Somos</h2>
+      <p>Somos uma organização sem fins lucrativos dedicada a promover ações solidárias e transformar vidas.</p>
+      <!-- Caminho da imagem também precisa subir um nível -->
+      <img src="../img/equipe.webp" alt="Equipe de voluntários da ONG Esperança sorrindo durante uma ação social">
+    </section>
+
+    <section aria-labelledby="contato">
+      <h2 id="contato">Entre em Contato</h2>
+      <address>
+        <p>Email: <a href="mailto:contato@ongesperanca.org">contato@ongesperanca.org</a></p>
+        <p>Telefone: (41) 99999-9999</p>
+        <p>Endereço: Rua da Solidariedade, 123 - Curitiba, PR</p>
+      </address>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ONG Esperança - Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Caminho do JS também precisa subir um nível -->
+  <script src="../js/modules/navegacao.js"></script>
+</body>
+</html>
