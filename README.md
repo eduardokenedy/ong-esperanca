@@ -9,6 +9,7 @@ Site institucional de uma organização sem fins lucrativos. O projeto reúne p�
 - **Página inicial** (`html/index.html`): apresentação da ONG e informações de contato.
 - **Projetos** (`html/projetos.html`): campanhas e iniciativas renderizadas a partir de dados em JavaScript.
 - **Cadastro** (`html/cadastro.html`): formulário de voluntariado com máscaras de CPF, CEP e telefone, validação de campos e CPF, e salvamento automático de rascunho no `localStorage`.
+- **Acessibilidade visual**: paletas de alto contraste, tema escuro adaptado à preferência do sistema e foco visível nos controles.
 - **JavaScript** (`html/js/modules/`): módulos para navegação, renderização dos projetos e comportamento, validação e persistência do formulário.
 
 O formulário é demonstrativo: os dados ficam somente no navegador e não são enviados à ONG, pois o projeto ainda não tem backend. Como o rascunho inclui dados pessoais, use apenas informações fictícias durante os testes e evite computadores compartilhados.
@@ -20,6 +21,10 @@ O formulário é demonstrativo: os dados ficam somente no navegador e não são 
 - **JavaScript puro (Vanilla JS)** e APIs do navegador, incluindo `localStorage`.
 
 O repositório não contém `package.json`, framework, biblioteca externa ou dependência de instalação.
+
+## Acessibilidade visual e temas
+
+As cores de texto, links, botões, mensagens e superfícies foram ajustadas para manter contraste legível nos temas claro e escuro. O tema escuro acompanha `prefers-color-scheme: dark`; `prefers-contrast: more` ativa uma paleta reforçada, e `forced-colors` deixa o navegador aplicar seu esquema de alto contraste. Os controles mantêm foco visível por teclado. A preferência é automática, sem botão de alternância no site.
 
 ## Requisitos
 
