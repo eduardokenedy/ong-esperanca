@@ -89,6 +89,20 @@ a:hover {
   text-decoration: underline;
 }
 
+.pular-conteudo {
+  position: absolute;
+  z-index: 1000;
+  top: -5rem;
+  left: var(--espaco-sm);
+  padding: var(--espaco-xs) var(--espaco-sm);
+  background: var(--cor-branca);
+  color: var(--cor-primaria);
+}
+
+.pular-conteudo:focus-visible {
+  top: var(--espaco-sm);
+}
+
 /* ===========================
    Layout e componentes
    =========================== */

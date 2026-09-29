@@ -9,7 +9,7 @@ Site institucional de uma organização sem fins lucrativos. O projeto reúne p�
 - **Página inicial** (`html/index.html`): apresentação da ONG e informações de contato.
 - **Projetos** (`html/projetos.html`): campanhas e iniciativas renderizadas a partir de dados em JavaScript.
 - **Cadastro** (`html/cadastro.html`): formulário de voluntariado com máscaras de CPF, CEP e telefone, validação de campos e CPF, e salvamento automático de rascunho no `localStorage`.
-- **Acessibilidade visual**: paletas de alto contraste, tema escuro adaptado à preferência do sistema e foco visível nos controles.
+- **Acessibilidade**: landmarks semânticos, link de salto para o conteúdo, foco visível por teclado, paletas de alto contraste e tema escuro adaptado à preferência do sistema.
 - **JavaScript** (`html/js/modules/`): módulos para navegação, renderização dos projetos, máscaras, validação e persistência do formulário.
 
 O formulário é demonstrativo: os dados ficam somente no navegador e não são enviados à ONG, pois o projeto ainda não tem backend. Como o rascunho inclui dados pessoais, use apenas informações fictícias durante os testes e evite computadores compartilhados.
