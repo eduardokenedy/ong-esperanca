@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/estilo.css">
 </head>
 <body>
+  <a class="pular-conteudo" href="#conteudo-principal">Pular para o conteúdo</a>
   <header>
     <h1>Projetos da ONG Esperança</h1>
     <nav>
@@ -20,40 +21,16 @@
     </nav>
   </header>
 
-  <main>
+  <main id="conteudo-principal">
     <section aria-labelledby="doacao">
       <h2 id="doacao">Campanhas de Doação</h2>
-
-      <article>
-        <h3>Campanha do Agasalho</h3>
-        <p>Coleta de roupas e cobertores para famílias em situação de vulnerabilidade.</p>
-        <!-- Caminho da imagem ajustado para subir um nível -->
-        <img src="../img/agasalho.jpg" alt="Voluntários recolhendo roupas para a campanha do agasalho">
-        <a href="cadastro.html">Participe</a>
-      </article>
-
-      <article>
-        <h3>Doação de Alimentos</h3>
-        <p>Distribuição de cestas básicas para comunidades carentes.</p>
-        <img src="../img/alimentos.jpg" alt="Cestas básicas organizadas para distribuição">
-        <a href="cadastro.html">Contribua</a>
-      </article>
+      <div class="grade-projetos" id="campanhas-projetos"></div>
     </section>
 
     <section aria-labelledby="voluntariado">
       <h2 id="voluntariado">Projetos de Voluntariado</h2>
 
-      <article>
-        <h3>Apoio Escolar</h3>
-        <p>Aulas de reforço para crianças em idade escolar.</p>
-        <img src="../img/aulas.jpg" alt="Voluntário ensinando crianças em sala comunitária">
-      </article>
-
-      <article>
-        <h3>Visitas a Asilos</h3>
-        <p>Momentos de companhia e atividades recreativas com idosos.</p>
-        <img src="../img/asilos.jpg" alt="Voluntários conversando com idosos em asilo">
-      </article>
+      <div class="grade-projetos" id="iniciativas-projetos"></div>
     </section>
 
     <section aria-labelledby="depoimentos">
@@ -69,7 +46,7 @@
     <p>&copy; 2026 ONG Esperança - Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Script para renderização dinâmica -->
-  <script src="../js/modules/renderizarProjetos.js"></script>
+  <script type="module" src="js/modules/navegacao.js"></script>
+  <script type="module" src="js/modules/renderizarProjetos.js"></script>
 </body>
 </html>
